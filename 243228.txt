@@ -1,0 +1,88 @@
+mkdir SI_2026_Lab1_243228
+cd "SI_2026_Lab1_243228"
+touch "243228.txt"
+git init
+echo "Viktor Nikolov - 243228" > README.md
+git add README.md
+git commit -m "Initial commit"
+git remote add origin https://github.com/nikolovviktor/SI_2026_Lab1_243228
+git add SI2026Lab1Main.java
+git commit -m "Add starter code"
+git push -u origin master
+git checkout -b feature-search-books
+git add SI2026Lab1Main.java
+git commit -m "Implement book search"
+git checkout master
+git merge feature-search-branch
+
+
+
+git log --oneline --graph --all
+ f1fbaec (HEAD -> master, origin/feature-search-books, feature-search-books) Implement book search
+* 65b1cb2 (origin/master) Add starter code
+* 7b90111 Initial commit
+
+//објаснување: git checkout master проследено со git merge feature-search-books. Се префрлив на "master" гранката и ја споив "feature-search-books" гранката во неа. Спојувањето беше "fast-forward" поради тоа што гранката "master" немаше нови комитови, откако беше креирана гранката "feature-search-books".
+
+
+
+git checkout -b feature-borrow-book
+git add SI2026Lab1Main.java
+git commit -m "Implement borrow book"
+git push -u origin feature-borrow-book
+git checkout master
+git checkout -b feature-genre-report
+git add SI2026Lab1Main.java
+git commit -m "Implement genre report"
+git push -u origin feature-genre-report
+
+git status
+
+On branch feature-genre-report
+Your branch is up to date with 'origin/feature-genre-report'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+
+      -----> modified:   SI2026Lab1Main.java <-----
+
+(не сум го зачувал .java фајлот..)
+git add SI2026Lab1Main.java
+git commit --amend -m "Implement genre report"
+git push --force origin feature-genre-report
+git checkout master
+git add SI2026Lab1Main.java
+git commit -m "Update borrow message on master"
+git merge feature-borrow-book
+
+
+
+//Дали настанал конфликт? Да! При обидот за спојување со на "feature-borrow-book" со "master" гранката (git merge feature-borrow-book), настана "merge conflict" во фајлот SI2026Lab1Main.java.
+
+//Како е решен конфликтот?  Конфликтот го решив рачно со отварање на SI2026Lab1Main.java во editor, ги најдов местата каде беше обележано со "<<<<<<< HEAD, =======, >>>>>>> feature-borrow-book", ги избришав истите и го променив кодот да ја содржи саканата верзија на пораката ("Borrowed successfully."). Потоа ги извршив командите:
+//"git add SI2026Lab1Main.java
+//git commit -m "Resolved merge conflict".
+
+//Која merge стратегија е употребена? Користена е "recursive merge" стратегијата, која git автоматски користе кога ќе детектира конфликт при merge.
+
+
+
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        243228.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+
+git add SI2026Lab1Main.java
+git commit -m "Resolved merge conflict"
+
+
+git merge feature-genre-report

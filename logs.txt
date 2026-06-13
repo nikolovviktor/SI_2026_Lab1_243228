@@ -1,0 +1,12 @@
+*   06bff1f Resolved for feature-genre-report
+|\  
+| * a6a4705 Implement genre report
+* |   c668bda Resolved merge conflict
+|\ \  
+| * | 1cac597 Implement borrow book
+* | | 9282dbc Update borrow message on master
+|/ /  
+* / f1fbaec Implement book search
+|/  
+* 65b1cb2 Add starter code
+* 7b90111 Initial commit
